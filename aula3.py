@@ -45,5 +45,10 @@ linguas_contagem.columns = ["lingua_original", "total"]#renomeando as colunas
 
 #obter e plotar os dados sem o idioma ingles
 outras_liguas = filmes.query("original_language != 'en'")
-sns.catplot(x="original_language", kind="count", data = outras_liguas)
+pra_ordenar = outras_liguas["original_language"].value_counts()
+print(pra_ordenar.index)#obter o indice
+
+sns.catplot(x="original_language", kind="count", data = outras_liguas,
+            aspect=2, order=pra_ordenar.index, palette='GnBu_d')#o aspect aumenta o tamnho da fig
+
 plt.show()
